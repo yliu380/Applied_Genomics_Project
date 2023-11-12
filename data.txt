@@ -1,0 +1,13 @@
+#Bowtie on NA12878_Maternal reference genome, Reads Caltech_Rep1_RNASeq#
+Aligning reads to the reference genome...
+8509134 reads; of these:
+  8509134 (100.00%) were unpaired; of these:
+    2893108 (34.00%) aligned 0 times
+    3352355 (39.40%) aligned exactly 1 time
+    2263671 (26.60%) aligned >1 times
+66.00% overall alignment rate
+
+real    10m17.001s
+user    10m10.462s
+sys     0m13.923s
+Alignment completed. Output stored in BOWTIE_RNA_seq_reads.sam
