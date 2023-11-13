@@ -1,0 +1,13 @@
+Aligning reads to the reference genome...
+4086016 reads; of these:
+  4086016 (100.00%) were unpaired; of these:
+    682632 (16.71%) aligned 0 times
+    2423328 (59.31%) aligned exactly 1 time
+    980056 (23.99%) aligned >1 times
+83.29% overall alignment rate
+
+Sum of MAPQ: 106238418
+Number of Mapped Reads: 4086016
+
+Takes forever to run (~2 hours).
+Need to come up with a solution to deal with the extremely long run-time.
