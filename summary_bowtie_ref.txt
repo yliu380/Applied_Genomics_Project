@@ -1,2 +1,1 @@
-Sum of MAPQ: 106238418
-Number of Mapped Reads: 4086016
+

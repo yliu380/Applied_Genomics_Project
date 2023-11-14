@@ -21,5 +21,5 @@ time $BOWTIE2_PATH -x reference_index -U $READS -S $OUTPUT_SAM
 echo "Alignment completed. Output stored in $OUTPUT_SAM"
 
 #Get alignment quality from sam file in column 5
-awk -F'\t' 'BEGIN {sum=0; count=0} {if($1 !~ /^@/){sum+=$5; count++}} END {print "Sum of MAPQ: " sum; print "Number of Mapped Reads: " count}' aligned_reads.sam > alignment_summary.txt
+awk -F'\t' 'BEGIN {sum=0; count=0} {if($1 !~ /^@/){sum+=$5; count++}} END {print "Sum of MAPQ: " sum; print "Number of Mapped Reads: " count}' aligned_reads_Rep1_fastq.sam > alignment_summary.txt
 

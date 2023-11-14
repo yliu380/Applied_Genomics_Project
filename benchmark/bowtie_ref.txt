@@ -1,3 +1,5 @@
+READS="Rep1_fastq.fastq"
+
 Aligning reads to the reference genome...
 4086016 reads; of these:
   4086016 (100.00%) were unpaired; of these:
@@ -11,3 +13,11 @@ Number of Mapped Reads: 4086016
 
 Takes forever to run (~2 hours).
 Need to come up with a solution to deal with the extremely long run-time.
+
+
+45803469 reads; of these:
+  45803469 (100.00%) were unpaired; of these:
+    20091454 (43.86%) aligned 0 times
+    13691391 (29.89%) aligned exactly 1 time
+    12020624 (26.24%) aligned >1 times
+56.14% overall alignment rate
