@@ -10,8 +10,6 @@ fi
 STAR_PATH="~/miniconda3/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
-#REFERENCE_FASTA="ref_genome/chr22.fa"
-#REFERENCE_GTF="ref_genome/genomic.gtf"
 
 # Set the path to the input reads (replace with your actual input file)
 READS=$3
