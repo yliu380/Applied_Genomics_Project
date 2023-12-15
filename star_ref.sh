@@ -7,7 +7,7 @@ if [ $# -ne 3 ]; then
 fi
 
 # Set the paths to BOWTIE2 and the reference genome FASTA file
-STAR_PATH="/Users/cindyren/mambaforge/bin/STAR"
+STAR_PATH="~/miniconda3/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
 #REFERENCE_FASTA="ref_genome/chr22.fa"
