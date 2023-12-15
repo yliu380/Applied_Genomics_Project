@@ -7,7 +7,7 @@ if [ $# -ne 3 ]; then
 fi
 
 # Set the paths to BOWTIE2 and the reference genome FASTA file
-STAR_PATH="~/miniconda3/bin/STAR"
+STAR_PATH="~/mambaforge/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
 
@@ -23,7 +23,7 @@ if [ ! -e "star/Genome" ]; then
   echo "Building STAR index for the reference genome..."
   mkdir -p star
   mkdir -p $WORKING_DIR
-  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $WORKING_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
+  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir star --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
   echo "Index built successfully."
 else
   echo "STAR index already exists."
