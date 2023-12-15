@@ -1,11 +1,21 @@
 #!/bin/bash
 
+# Check if exactly three arguments are provided
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <reference_genome.fna> <reference_annotation.gtf> <reads.fastq>"
+    exit 1
+fi
+
 # Set the paths to BOWTIE2 and the reference genome FASTA file
 STAR_PATH="/Users/cindyren/mambaforge/bin/STAR"
-REFERENCE_FASTA="ref_genome/GRch38.p14.fna"
-REFERENCE_GTF="ref_genome/genomic.gtf"
-REFERENCE_FASTA="ref_genome/chr22.fa"
-REFERENCE_GTF="ref_genome/genomic.gtf"
+REFERENCE_FASTA=$1
+REFERENCE_GTF=$2
+#REFERENCE_FASTA="ref_genome/chr22.fa"
+#REFERENCE_GTF="ref_genome/genomic.gtf"
+
+# Set the path to the input reads (replace with your actual input file)
+READS=$3
+READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 WORKING_DIR="star/${READS_FILENAME}"
 
@@ -20,11 +30,6 @@ if [ ! -e "star/Genome" ]; then
 else
   echo "STAR index already exists."
 fi
-
-# Set the path to the input reads (replace with your actual input file)
-READS="rna_seq/Rep1.fastq"
-#READS="rna_seq/wgEncodeCaltechRnaSeqGm12878R1x75dFastqRep2.fastq"
-READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 # Set the path for the output SAM file
 ALIGNMENT_SUMMARY="star/alignment_summary_${READS_FILENAME}.txt"

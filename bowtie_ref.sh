@@ -1,33 +1,40 @@
 #!/bin/bash
 
+# Check if exactly two arguments are provided
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <reference_genome.fna> <reads.fastq>"
+    exit 1
+fi
+
 # Set the paths to BOWTIE2 and the reference genome FASTA file
 BOWTIE2_PATH="/usr/local/bin/bowtie2"
-#REFERENCE_GENOME="ref_genome/rna.fna"
-REFERENCE_GENOME="ref_genome/chr22.fa"
+REFERENCE_GENOME=$1
+
+# Extracting the base name of the reference genome
+REFERENCE_NAME=$(basename "$REFERENCE_GENOME" .fna | cut -d '_' -f 2)
 
 # Check if the Bowtie2 index file exists
-if [ ! -e "bowtie2/chr22/reference_index.1.bt2" ]; then
+if [ ! -e "bowtie2/${REFERENCE_NAME}/*.1.bt2" ]; then
   # If not, build the BOWTIE2 index for the reference genome
   echo "Building BOWTIE2 index for the reference genome..."
-  mkdir -p bowtie2/chr22
-  $BOWTIE2_PATH-build $REFERENCE_GENOME bowtie2/chr22/reference_index
+  mkdir -p "bowtie2/${REFERENCE_NAME}"
+  $BOWTIE2_PATH-build $REFERENCE_GENOME "bowtie2/${REFERENCE_NAME}/reference_index"
   echo "Index built successfully."
 else
   echo "Bowtie2 index already exists."
 fi
 
 # Set the path to the input reads (replace with your actual input file)
-READS="rna_seq/Rep1.fastq"
-#READS="rna_seq/wgEncodeCaltechRnaSeqGm12878R1x75dFastqRep2.fastq"
+READS=$2
 READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 # Set the path for the output SAM file
-OUTPUT_SAM="bowtie2/chr22/aligned_reads_${READS_FILENAME}.sam"
-ALIGNMENT_SUMMARY="bowtie2/chr22/alignment_summary_${READS_FILENAME}.txt"
+OUTPUT_SAM="bowtie2/${REFERENCE_NAME}/aligned_reads_${READS_FILENAME}.sam"
+ALIGNMENT_SUMMARY="bowtie2/${REFERENCE_NAME}/alignment_summary_${READS_FILENAME}.txt"
 
 # Align reads to the reference genome using BOWTIE2
 echo "Aligning reads to the reference genome..."
-{ time $BOWTIE2_PATH -x bowtie2/chr22/reference_index -U $READS -S $OUTPUT_SAM 2>&1 ; } | tee -a $ALIGNMENT_SUMMARY
+{ time $BOWTIE2_PATH -x "bowtie2/${REFERENCE_NAME}/reference_index" -U $READS -S $OUTPUT_SAM 2>&1 ; } | tee -a $ALIGNMENT_SUMMARY
 
 echo "Alignment completed. Output stored in $OUTPUT_SAM. Terminal output stored in $ALIGNMENT_SUMMARY"
 

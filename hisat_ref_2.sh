@@ -1,5 +1,12 @@
 #!/bin/bash
-ANNOTATION="ref_genome/chr22_annotation.gtf"
+
+# Check if exactly three arguments are provided
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <annotation.gtf> <reads.fastq>"
+    exit 1
+fi
+
+ANNOTATION=$1
 SPLICE="ref_genome/splice.ss"
 EXON="ref_genome/exon.exon"
 
