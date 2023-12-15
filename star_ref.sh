@@ -16,8 +16,8 @@ if [ $# -ne 3 ]; then
     exit 1
 fi
 
-# Set the paths to STAR and the reference genome FASTA file
-STAR_PATH="/home/xren15/mambaforge/bin/STAR"
+# Set the paths to BOWTIE2 and the reference genome FASTA file
+STAR_PATH="~/miniconda3/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
 
