@@ -1,12 +1,22 @@
 #!/bin/bash
 
+#SBATCH --job-name=”MyStarRefRun”
+#SBATCH --output=”myLog-file”
+#SBATCH --partition=defq
+#SBATCH ---t 02-01:30:15
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
+#SBATCH --account=xren15
+#SBATCH --cpus-per-task=6
+#SBATCH --export=ALL
+
 # Check if exactly three arguments are provided
 if [ $# -ne 3 ]; then
     echo "Usage: $0 <reference_genome.fna> <reference_annotation.gtf> <reads.fastq>"
     exit 1
 fi
 
-# Set the paths to BOWTIE2 and the reference genome FASTA file
+# Set the paths to STAR and the reference genome FASTA file
 STAR_PATH="/home/xren15/mambaforge/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
@@ -38,7 +48,7 @@ OUTPUT_PREFIX="star/${READS_FILENAME}"
 
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
-{ time ls -l $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } 2 > $ALIGNMENT_SUMMARY
+{ time ls -l $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } > $ALIGNMENT_SUMMARY 2>&1
 
 echo "Alignment completed. Output stored in $OUTPUT_PREFIX. Terminal output stored in $ALIGNMENT_SUMMARY"
 
