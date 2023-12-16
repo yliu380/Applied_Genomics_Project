@@ -16,7 +16,7 @@ if [ $# -ne 3 ]; then
     exit 1
 fi
 
-# Set the paths to BOWTIE2 and the reference genome FASTA file
+# Set the paths to STAR and the reference genome FASTA file
 STAR_PATH="/home/xren15/mambaforge/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
@@ -65,7 +65,6 @@ OUTPUT_PREFIX="star/${READS_FILENAME}"
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
 { time ls -l $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } 2 > $ALIGNMENT_SUMMARY
->>>>>>> 1fac91e (updated star_ref.sh)
 
 echo "Alignment completed. Output stored in $OUTPUT_PREFIX. Terminal output stored in $ALIGNMENT_SUMMARY"
 
