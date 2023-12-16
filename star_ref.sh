@@ -7,7 +7,7 @@ if [ $# -ne 3 ]; then
 fi
 
 # Set the paths to BOWTIE2 and the reference genome FASTA file
-STAR_PATH="~/mambaforge/bin/STAR"
+STAR_PATH="/home/xren15/mambaforge/bin/STAR"
 REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
 
@@ -15,27 +15,30 @@ REFERENCE_GTF=$2
 READS=$3
 READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
-WORKING_DIR="star/${READS_FILENAME}"
+WORKING_DIR="/home/data/xren15/star/${READS_FILENAME}"
+STAR_TEMP_DIR="/home/data/xren15/star"
 
 # Check if the STAR index file exists
 if [ ! -e "star/Genome" ]; then
   # If not, build the STAR index for the reference genome
   echo "Building STAR index for the reference genome..."
-  mkdir -p star
   mkdir -p $WORKING_DIR
-  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir star --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
+  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $STAR_TEMP_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
   echo "Index built successfully."
 else
   echo "STAR index already exists."
 fi
 
+# Make the output directory
+mkdir -p "star/${READS_FILENAME}"
+
 # Set the path for the output SAM file
-ALIGNMENT_SUMMARY="star/alignment_summary_${READS_FILENAME}.txt"
-OUTPUT_PREFIX="${WORKING_DIR}${READS_FILENAME}"
+ALIGNMENT_SUMMARY="star/${READS_FILENAME}/alignment_summary.txt"
+OUTPUT_PREFIX="star/${READS_FILENAME}"
 
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
-$STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX
+{ time ls -l $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } 2 > $ALIGNMENT_SUMMARY
 
 echo "Alignment completed. Output stored in $OUTPUT_PREFIX. Terminal output stored in $ALIGNMENT_SUMMARY"
 
