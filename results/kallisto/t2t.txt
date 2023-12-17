@@ -1,0 +1,49 @@
+[build] loading fasta file /data/mschatz1/xren15/ref_genome/GCF_009914755.1/cds_from_genomic.fna
+[build] k-mer length: 31
+KmerStream::KmerStream(): Start computing k-mer cardinality estimations (1/2)
+KmerStream::KmerStream(): Start computing k-mer cardinality estimations (1/2)
+KmerStream::KmerStream(): Finished
+CompactedDBG::build(): Estimated number of k-mers occurring at least once: 35131893
+CompactedDBG::build(): Estimated number of minimizer occurring at least once: 8700324
+CompactedDBG::filter(): Processed 265669795 k-mers in 130323 reads
+CompactedDBG::filter(): Found 35071461 unique k-mers
+CompactedDBG::filter(): Number of blocks in Bloom filter is 240161
+CompactedDBG::construct(): Extract approximate unitigs (1/2)
+CompactedDBG::construct(): Extract approximate unitigs (2/2)
+CompactedDBG::construct(): Closed all input files
+
+CompactedDBG::construct(): Splitting unitigs (1/2)
+
+CompactedDBG::construct(): Splitting unitigs (2/2)
+CompactedDBG::construct(): Before split: 195276 unitigs
+CompactedDBG::construct(): After split (1/1): 195276 unitigs
+CompactedDBG::construct(): Unitigs split: 843
+CompactedDBG::construct(): Unitigs deleted: 0
+
+CompactedDBG::construct(): Joining unitigs
+CompactedDBG::construct(): After join: 179381 unitigs
+CompactedDBG::construct(): Joined 16112 unitigs
+[build] building MPHF
+[build] creating equivalence classes ... 
+[build] target de Bruijn graph has k-mer length 31 and minimizer length 23
+[build] target de Bruijn graph has 179381 contigs and contains 35101804 k-mers 
+
+
+real	2m3.631s
+user	2m1.488s
+sys	0m1.515s
+
+
+
+[quant] fragment length distribution will be estimated from the data
+[index] k-mer length: 31
+[index] number of targets: 130,323
+[index] number of k-mers: 35,101,804
+[quant] running in paired-end mode
+[quant] will process pair 1: /data/mschatz1/xren15/rna_seq/ENCFF145QCK.fastq
+                             /data/mschatz1/xren15/rna_seq/ENCFF423RWS.fastq
+[progress] 51M reads processed (44.0% mapped)              done
+[quant] processed 51,516,878 reads, 22,685,766 reads pseudoaligned
+[quant] estimated average fragment length: 386.1
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 1,200 rounds

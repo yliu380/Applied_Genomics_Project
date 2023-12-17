@@ -1,0 +1,9 @@
+Dec 17 06:24:09 ..... started STAR run
+Dec 17 06:24:09 ..... loading genome
+Dec 17 06:24:21 ..... started mapping
+Dec 17 06:28:08 ..... started sorting BAM
+Dec 17 06:28:59 ..... finished successfully
+
+real	4m51.299s
+user	33m10.358s
+sys	0m57.914s

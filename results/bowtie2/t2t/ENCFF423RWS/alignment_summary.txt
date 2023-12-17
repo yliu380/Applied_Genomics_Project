@@ -1,0 +1,9 @@
+51516878 reads; of these:
+  51516878 (100.00%) were unpaired; of these:
+    11406268 (22.14%) aligned 0 times
+    24962757 (48.46%) aligned exactly 1 time
+    15147853 (29.40%) aligned >1 times
+77.86% overall alignment rate
+
+Sum of MAPQ: 1033641058
+Number of Mapped Reads: 51516878
