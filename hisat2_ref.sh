@@ -19,9 +19,15 @@ READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 python3 hisat2-2.2.1/hisat2_extract_exons.py $ANNOTATION > $SPLICE
 python3 hisat2-2.2.1/hisat2_extract_splice_sites.py $ANNOTATION > $EXON
 
+<<<<<<< HEAD
 # WORKING_DIR="/data/mschatz1/xren15/hisat2"
 # mkdir -p $WORKING_DIR
 $HISAT2_PATH-build --ss hisat2-2.2.1/hisat2_extract_exons.py --exon hisat2-2.2.1/hisat2_extract_splice_sites.py $REF_GENOME $REF_PREFIX
+=======
+WORKING_DIR="/data/mschatz1/xren15/hisat2"
+mkdir -p $WORKING_DIR
+$HISAT2_PATH-build --tmp $WORKING_DIR --ss hisat2-2.2.1/hisat2_extract_exons.py --exon hisat2-2.2.1/hisat2_extract_splice_sites.py $REF_GENOME $REF_PREFIX
+>>>>>>> bea5162 (updated hisat2 script)
 
 OUTPUT_SAM="hisat2/${READS_FILENAME}/aligned_reads.sam"
 ALIGNMENT_SUMMARY="hisat2/${READS_FILENAME}/alignment_summary.txt"
