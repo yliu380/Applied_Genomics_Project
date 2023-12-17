@@ -21,7 +21,7 @@ gffread -w "${working_dir}/${ref_prefix}.fa" -g $reference $annotation
 
 time $salmon_path index -t "${working_dir}/${ref_prefix}.fa" -i "${working_dir}/${ref_prefix}_index"
 
-if [ ! -e "/data/mschatz1/xren15/star/Genome" ]; then
+if [ ! -e "/data/mschatz1/xren15/salmon/" ]; then
   # If not, build the STAR index for the reference genome
   echo "Building STAR index for the reference genome..."
   mkdir -p salmon
