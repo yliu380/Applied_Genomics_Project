@@ -1,0 +1,4 @@
+Build index
+real    78m59.189s
+user    78m12.495s
+sys     0m14.086s

@@ -1,0 +1,19 @@
+Total time = 04:34:20
+
+51516878 reads; of these:
+  51516878 (100.00%) were paired; of these:
+    4476135 (8.69%) aligned concordantly 0 times
+    44949312 (87.25%) aligned concordantly exactly 1 time
+    2091431 (4.06%) aligned concordantly >1 times
+    ----
+    4476135 pairs aligned concordantly 0 times; of these:
+      240420 (5.37%) aligned discordantly 1 time
+    ----
+    4235715 pairs aligned 0 times concordantly or discordantly; of these:
+      8471430 mates make up the pairs; of these:
+        5200265 (61.39%) aligned 0 times
+        3024253 (35.70%) aligned exactly 1 time
+        246912 (2.91%) aligned >1 times
+94.95% overall alignment rate
+Time searching: 02:02:23
+Overall time: 02:02:29

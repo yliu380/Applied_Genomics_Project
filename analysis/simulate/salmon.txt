@@ -1,0 +1,21 @@
+Build Index
+real    2m53.756s
+user    2m59.534s
+sys     0m4.410s
+
+Alignment
+
+[2023-12-17 01:14:57.123] [jointLog] [info] Computed 413,718 rich equivalence classes for further processing
+[2023-12-17 01:14:57.123] [jointLog] [info] Counted 4,350,013 total reads in the equivalence classes 
+[2023-12-17 01:14:57.350] [jointLog] [info] Number of mappings discarded because of alignment score : 5,851,892
+[2023-12-17 01:14:57.350] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 763,571
+[2023-12-17 01:14:57.350] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 0
+[2023-12-17 01:14:57.350] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings : 8,060
+[2023-12-17 01:14:57.380] [jointLog] [warning] Only 4350013 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2023-12-17 01:14:57.380] [jointLog] [info] Mapping rate = 43.5001%
+
+real    0m45.807s
+user    28m22.407s
+sys     0m37.673s

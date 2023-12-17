@@ -1,0 +1,49 @@
+STAR --runThreadN 8 --runMode genomeGenerate --genomeDir --genomeFastaFiles --sjdbGTFfile
+
+real    78m49.143s
+user    453m14.656s
+sys     2m40.044s
+
+STAR --runThreadN 8 --readFilesIn --genomeDir --outFileNamePrefix
+
+real    2m31.053s
+user    16m48.812s
+sys     0m28.427s
+                                                                                                             
+                                 Started job on |       Dec 17 09:17:24
+                             Started mapping on |       Dec 17 09:17:42
+                                    Finished on |       Dec 17 09:19:55
+       Mapping speed, Million of reads per hour |       270.68
+
+                          Number of input reads |       10000000
+                      Average input read length |       200
+                                    UNIQUE READS:
+                   Uniquely mapped reads number |       9526407
+                        Uniquely mapped reads % |       95.26%
+                          Average mapped length |       199.73
+                       Number of splices: Total |       2651482
+            Number of splices: Annotated (sjdb) |       2540465
+                       Number of splices: GT/AG |       2616870
+                       Number of splices: GC/AG |       21946
+                       Number of splices: AT/AC |       1896
+               Number of splices: Non-canonical |       10770
+                      Mismatch rate per base, % |       0.52%
+                         Deletion rate per base |       0.01%
+                        Deletion average length |       1.57
+                        Insertion rate per base |       0.01%
+                       Insertion average length |       1.54
+                             MULTI-MAPPING READS:
+        Number of reads mapped to multiple loci |       452771
+             % of reads mapped to multiple loci |       4.53%
+        Number of reads mapped to too many loci |       11727
+             % of reads mapped to too many loci |       0.12%
+                                  UNMAPPED READS:
+  Number of reads unmapped: too many mismatches |       0
+       % of reads unmapped: too many mismatches |       0.00%
+            Number of reads unmapped: too short |       2654
+                 % of reads unmapped: too short |       0.03%
+                Number of reads unmapped: other |       6441
+                     % of reads unmapped: other |       0.06%
+                                  CHIMERIC READS:
+                       Number of chimeric reads |       0
+                            % of chimeric reads |       0.00%
