@@ -38,7 +38,7 @@ if [ ! -e "/data/mschatz1/xren15/star-hg38/Genome" ]; then
     echo entered the if
   echo "Building STAR index for the reference genome..."
   mkdir -p $WORKING_DIR
-  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $STAR_TEMP_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
+  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $WORKING_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
   echo "Index built successfully."
 else
   echo "STAR index already exists."
@@ -60,7 +60,7 @@ mkdir -p "star/${READS_FILENAME}"
 
 # Set the path for the output SAM file
 ALIGNMENT_SUMMARY="star/${READS_FILENAME}/alignment_summary.txt"
-OUTPUT_PREFIX="star/${READS_FILENAME}"
+OUTPUT_PREFIX="star/${READS_FILENAME}/"
 
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
