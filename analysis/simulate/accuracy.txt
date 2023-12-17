@@ -1,0 +1,14 @@
+Star:
+Number of reads matched successfully: 4659359
+Total number of reads in .cig file: 20000000
+Total number of reads in SAM file: 21648090
+
+HISAT:
+Number of reads matched successfully: 19085474
+Total number of reads in .cig file: 20000000
+Total number of reads in SAM file: 22089468
+
+Bowtie:
+Number of reads matched successfully: 17141362
+Total number of reads in .cig file: 20000000
+Total number of reads in SAM file: 20000000

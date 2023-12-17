@@ -1,0 +1,12 @@
+Build Index
+real    5m55.176s
+user    5m48.908s
+sys     0m3.902s
+
+Alignment
+[progress] 9M reads processed (46.3% mapped)              done
+[quant] processed 10,000,000 reads, 4,631,389 reads pseudoaligned
+
+real    21m05.916s
+user    21m0.826s
+sys     0m14.581s

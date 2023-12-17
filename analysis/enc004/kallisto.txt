@@ -1,0 +1,15 @@
+Build index
+real    7m48.944s
+user    7m41.905s
+sys     0m5.682s
+
+Quant
+[progress] 51M reads processed (83.9% mapped)              done
+[quant] processed 51,516,878 reads, 43,244,248 reads pseudoaligned
+[quant] estimated average fragment length: 333.3
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 1,291 rounds
+
+real    26m31.087s
+user    26m5.967s
+sys     0m20.941s
