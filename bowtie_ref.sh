@@ -2,7 +2,7 @@
 
 # Check if exactly two arguments are provided
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 <reference_genome.fna> <reads1.fastq>"
+    echo "Usage: $0 <reference_genome.fna> <reads.fastq>"
     exit 1
 fi
 
