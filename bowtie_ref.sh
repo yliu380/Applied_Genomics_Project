@@ -2,7 +2,7 @@
 
 # Check if exactly two arguments are provided
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 <reference_genome.fna> <reads1.fastq>"
+    echo "Usage: $0 <reference_genome.fna> <reads.fastq>"
     exit 1
 fi
 
@@ -14,15 +14,14 @@ REFERENCE_GENOME=$1
 REFERENCE_NAME=$(basename "$REFERENCE_GENOME" .fna | cut -d '_' -f 2)
 
 # Check if the Bowtie2 index file exists
-#if [ ! -e "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/*.1.bt2" ]; then
-    # If not, build the BOWTIE2 index for the reference genome
- #   echo "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/*.1.bt2"
-  #echo "Building BOWTIE2 index for the reference genome..."
-  #mkdir -p "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}"
-  #$BOWTIE2_PATH-build $REFERENCE_GENOME "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/reference_index"
-  #echo "Index built successfully."
+#if [ ! -e "bowtie2/${REFERENCE_NAME}/*.1.bt2" ]; then
+#  # If not, build the BOWTIE2 index for the reference genome
+#  echo "Building BOWTIE2 index for the reference genome..."
+#  mkdir -p "bowtie2/${REFERENCE_NAME}"
+#  $BOWTIE2_PATH-build $REFERENCE_GENOME "bowtie2/${REFERENCE_NAME}/reference_index"
+#  echo "Index built successfully."
 #else
-  #echo "Bowtie2 index already exists."
+#  echo "Bowtie2 index already exists."
 #fi
 
 # Set the path to the input reads (replace with your actual input file)
@@ -30,12 +29,12 @@ READS=$2
 READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 # Set the path for the output SAM file
-OUTPUT_SAM="bowtie2/${READS_FILENAME}/aligned_reads.sam"
-ALIGNMENT_SUMMARY="bowtie2/${READS_FILENAME}/alignment_summary.txt"
+OUTPUT_SAM="bowtie2/hg38/${REFERENCE_NAME}/aligned_reads.sam"
+ALIGNMENT_SUMMARY="bowtie2/hg38/${REFERENCE_NAME}/alignment_summary.txt"
 
 # Align reads to the reference genome using BOWTIE2
 echo "Aligning reads to the reference genome..."
-mkdir -p "bowtie2/${READS_FILENAME}"
+mkdir -p "bowtie2/hg38/${REFERENCE_NAME}"
 { time $BOWTIE2_PATH -x "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/reference_index" -U $READS -S $OUTPUT_SAM 2>&1 ; } | tee -a $ALIGNMENT_SUMMARY
 
 echo "Alignment completed. Output stored in $OUTPUT_SAM. Terminal output stored in $ALIGNMENT_SUMMARY"
