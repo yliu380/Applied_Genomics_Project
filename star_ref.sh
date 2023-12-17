@@ -25,15 +25,14 @@ REFERENCE_GTF=$2
 READS=$3
 READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
-WORKING_DIR="/home/data/xren15/star/${READS_FILENAME}"
-STAR_TEMP_DIR="/home/data/xren15/star"
+WORKING_DIR="/data/mschatz1/xren15/star"
 
 # Check if the STAR index file exists
-if [ ! -e "star/Genome" ]; then
+if [ ! -e "/data/mschatz1/xren15/star/Genome" ]; then
   # If not, build the STAR index for the reference genome
   echo "Building STAR index for the reference genome..."
   mkdir -p $WORKING_DIR
-  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $STAR_TEMP_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
+  $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $WORKING_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
   echo "Index built successfully."
 else
   echo "STAR index already exists."
@@ -44,11 +43,11 @@ mkdir -p "star/${READS_FILENAME}"
 
 # Set the path for the output SAM file
 ALIGNMENT_SUMMARY="star/${READS_FILENAME}/alignment_summary.txt"
-OUTPUT_PREFIX="star/${READS_FILENAME}"
+OUTPUT_PREFIX="star/${READS_FILENAME}/"
 
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
-{ time ls -l $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } > $ALIGNMENT_SUMMARY 2>&1
+{ time $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } > $ALIGNMENT_SUMMARY 2>&1
 
 echo "Alignment completed. Output stored in $OUTPUT_PREFIX. Terminal output stored in $ALIGNMENT_SUMMARY"
 
