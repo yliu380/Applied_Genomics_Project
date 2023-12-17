@@ -7,18 +7,18 @@ if [ $# -ne 2 ]; then
 fi
 
 # Set the paths to BOWTIE2 and the reference genome FASTA file
-BOWTIE2_PATH="/usr/local/bin/bowtie2"
+BOWTIE2_PATH="/home/xren15/mambaforge/bin/bowtie2"
 REFERENCE_GENOME=$1
 
 # Extracting the base name of the reference genome
 REFERENCE_NAME=$(basename "$REFERENCE_GENOME" .fna | cut -d '_' -f 2)
 
 # Check if the Bowtie2 index file exists
-if [ ! -e "bowtie2/${REFERENCE_NAME}/*.1.bt2" ]; then
+if [ ! -e "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/*.1.bt2" ]; then
   # If not, build the BOWTIE2 index for the reference genome
   echo "Building BOWTIE2 index for the reference genome..."
-  mkdir -p "bowtie2/${REFERENCE_NAME}"
-  $BOWTIE2_PATH-build $REFERENCE_GENOME "bowtie2/${REFERENCE_NAME}/reference_index"
+  mkdir -p "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}"
+  $BOWTIE2_PATH-build $REFERENCE_GENOME "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/reference_index"
   echo "Index built successfully."
 else
   echo "Bowtie2 index already exists."
@@ -29,12 +29,12 @@ READS=$2
 READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 # Set the path for the output SAM file
-OUTPUT_SAM="bowtie2/${REFERENCE_NAME}/aligned_reads_${READS_FILENAME}.sam"
-ALIGNMENT_SUMMARY="bowtie2/${REFERENCE_NAME}/alignment_summary_${READS_FILENAME}.txt"
+OUTPUT_SAM="bowtie2/${REFERENCE_NAME}/aligned_reads.sam"
+ALIGNMENT_SUMMARY="bowtie2/${REFERENCE_NAME}/alignment_summary.txt"
 
 # Align reads to the reference genome using BOWTIE2
 echo "Aligning reads to the reference genome..."
-{ time $BOWTIE2_PATH -x "bowtie2/${REFERENCE_NAME}/reference_index" -U $READS -S $OUTPUT_SAM 2>&1 ; } | tee -a $ALIGNMENT_SUMMARY
+{ time $BOWTIE2_PATH -x "/data/mschatz1/xren15/bowtie2/${REFERENCE_NAME}/reference_index" -U $READS -S $OUTPUT_SAM 2>&1 ; } | tee -a $ALIGNMENT_SUMMARY
 
 echo "Alignment completed. Output stored in $OUTPUT_SAM. Terminal output stored in $ALIGNMENT_SUMMARY"
 
