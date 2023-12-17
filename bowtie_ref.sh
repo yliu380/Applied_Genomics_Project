@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if exactly two arguments are provided
-if [ $# -ne 3 ]; then
-    echo "Usage: $0 <reference_genome.fna> <reads1.fastq> <reads2.fastq>"
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <reference_genome.fna> <reads1.fastq>"
     exit 1
 fi
 
@@ -25,9 +25,8 @@ REFERENCE_NAME=$(basename "$REFERENCE_GENOME" .fna | cut -d '_' -f 2)
 #fi
 
 # Set the path to the input reads (replace with your actual input file)
-READS1=$2
-READS2=$3
-#READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
+READS=$2
+READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 # Set the path for the output SAM file
 OUTPUT_SAM="bowtie2/hg38/${REFERENCE_NAME}/aligned_reads.sam"
