@@ -43,7 +43,7 @@ fi
 mkdir -p "star-hg38/${READS_FILENAME}"
 
 # Set the path for the output SAM file
-ALIGNMENT_SUMMARY="star-hg38/alignment_summary.txt"
+ALIGNMENT_SUMMARY="star-hg38/${READS_FILENAME}/alignment_summary.txt"
 OUTPUT_PREFIX="star-hg38/${READS_FILENAME}/"
 
 # Align reads to the reference genome using STAR
