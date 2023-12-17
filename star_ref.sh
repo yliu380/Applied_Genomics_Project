@@ -11,8 +11,8 @@
 #SBATCH --export=ALL
 
 # Check if exactly three arguments are provided
-if [ $# -ne 4 ]; then
-    echo "Usage: $0 <reference_genome.fna> <reference_annotation.gtf> <reads2.fastq> <reads2.fastq>"
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <reference_genome.fna> <reference_annotation.gtf> <reads.fastq>"
     exit 1
 fi
 
@@ -22,15 +22,15 @@ REFERENCE_FASTA=$1
 REFERENCE_GTF=$2
 
 # Set the path to the input reads (replace with your actual input file)
-READS1=$3
-READS2=$4
-#READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
+READS=$3
+READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 
 WORKING_DIR="/data/mschatz1/xren15/star-hg38"
 
 # Check if the STAR index file exists
-if [ ! -e "/data/mschatz1/xren15/star-38/Genome" ]; then
-  # If not, build the STAR index for the reference genome
+if [ ! -e "/data/mschatz1/xren15/star-hg38/Genome" ]; then
+    # If not, build the STAR index for the reference genome
+    echo entered the if
   echo "Building STAR index for the reference genome..."
   mkdir -p $WORKING_DIR
   $STAR_PATH --runThreadN 8 --runMode genomeGenerate --genomeDir $WORKING_DIR --genomeFastaFiles $REFERENCE_FASTA --sjdbGTFfile $REFERENCE_GTF
@@ -44,11 +44,11 @@ mkdir -p "star-hg38/${READS_FILENAME}"
 
 # Set the path for the output SAM file
 ALIGNMENT_SUMMARY="star-hg38/alignment_summary.txt"
-OUTPUT_PREFIX="star-hg38"
+OUTPUT_PREFIX="star-hg38/${READS_FILENAME}/"
 
 # Align reads to the reference genome using STAR
 echo "Aligning reads to the reference genome..."
-{ time $STAR_PATH --runThreadN 8 --readFilesIn $READS1 $READS2 --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } > $ALIGNMENT_SUMMARY 2>&1
+{ time $STAR_PATH --runThreadN 8 --readFilesIn $READS --genomeDir $WORKING_DIR --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $OUTPUT_PREFIX ; } > $ALIGNMENT_SUMMARY 2>&1
 
 echo "Alignment completed. Output stored in $OUTPUT_PREFIX. Terminal output stored in $ALIGNMENT_SUMMARY"
 
