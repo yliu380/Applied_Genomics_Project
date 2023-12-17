@@ -6,7 +6,7 @@ if [ $# -ne 3 ]; then
     exit 1
 fi
 
-HISAT2_PATH="/home/xren15/mambaforge/envs/my_env/bin/hisat2"
+HISAT2_PATH="/home/xren15/mambaforge/bin/hisat2"
 
 REF_GENOME=$1
 ANNOTATION=$2
@@ -19,9 +19,12 @@ READS_FILENAME=$(basename "$READS" | cut -f1 -d'.')
 python3 hisat2-2.2.1/hisat2_extract_exons.py $ANNOTATION > $SPLICE
 python3 hisat2-2.2.1/hisat2_extract_splice_sites.py $ANNOTATION > $EXON
 
-$HISAT2_PATH-build --ss hisat2-2.2.1/hisat2_extract_exons.py --exon hisat2-2.2.1/hisat2_extract_splice_sites.py $REF_GENOME $REF_PREFIX
+WORKING_DIR="/data/mschatz1/xren15/hisat2"
+mkdir -p $WORKING_DIR
+$HISAT2_PATH-build --tmp $WORKING_DIR --ss hisat2-2.2.1/hisat2_extract_exons.py --exon hisat2-2.2.1/hisat2_extract_splice_sites.py $REF_GENOME $REF_PREFIX
 
-OUTPUT_SAM="hisat/${READS_FILENAME}/aligned_reads.sam"
+OUTPUT_SAM="hisat2/${READS_FILENAME}/aligned_reads.sam"
+ALIGNMENT_SUMMARY="hisat2/${READS_FILENAME}/alignment_summary.txt"
 
-mkdir -p "hisat/${READS_FILENAME}"
-time $HISAT2_PATH -x $REF_PREFIX -U $READS -S $OUPUT_SAM
+mkdir -p "hisat2/${READS_FILENAME}"
+{ time $HISAT2_PATH -x $REF_PREFIX -U $READS -S $OUPUT_SAM ; } > $ALIGNMENT_SUMMARY 2>&1
