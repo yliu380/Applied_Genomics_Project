@@ -2,3 +2,23 @@ Build index
 real    78m59.189s
 user    78m12.495s
 sys     0m14.086s
+
+Alignment
+  51516878 (100.00%) were paired; of these:
+    17555422 (34.08%) aligned concordantly 0 times
+    21069779 (40.90%) aligned concordantly exactly 1 time
+    12891677 (25.02%) aligned concordantly >1 times
+    ----
+    17555422 pairs aligned concordantly 0 times; of these:
+      5697516 (32.45%) aligned discordantly 1 time
+    ----
+    11857906 pairs aligned 0 times concordantly or discordantly; of these:
+      23715812 mates make up the pairs; of these:
+        13882206 (58.54%) aligned 0 times
+        7724220 (32.57%) aligned exactly 1 time
+        2109386 (8.89%) aligned >1 times
+86.53% overall alignment rate
+
+real    424m0.603s
+user    411m16.092s
+sys     1m7.610s
